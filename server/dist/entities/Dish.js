@@ -13,6 +13,7 @@ exports.Dish = void 0;
 const typeorm_1 = require("typeorm");
 const type_graphql_1 = require("type-graphql");
 const OrderDetails_1 = require("./OrderDetails");
+const DishCategoty_1 = require("./DishCategoty");
 let Dish = class Dish extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -33,13 +34,9 @@ __decorate([
     __metadata("design:type", Buffer)
 ], Dish.prototype, "image", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Dish.prototype, "password", void 0);
-__decorate([
     (0, type_graphql_1.Field)(),
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Dish.prototype, "price", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
@@ -47,9 +44,18 @@ __decorate([
     __metadata("design:type", Number)
 ], Dish.prototype, "bowlsAvailable", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(),
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Dish.prototype, "categotyId", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => OrderDetails_1.OrderDetails, orderDetails => orderDetails.dish),
     __metadata("design:type", OrderDetails_1.OrderDetails)
 ], Dish.prototype, "orderDetails", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => DishCategoty_1.DishCategory, dishCategory => dishCategory.dishes),
+    __metadata("design:type", DishCategoty_1.DishCategory)
+], Dish.prototype, "category", void 0);
 Dish = __decorate([
     (0, type_graphql_1.ObjectType)(),
     (0, typeorm_1.Entity)()

@@ -50,7 +50,6 @@ export class ClientResolver {
     @Arg("password", () => String) password: string,
     @Ctx() { req, res }: MyContext
   ): Promise<UserResponse> {
-    console.log(req)
     const clientRepository = AppDataSource.getRepository(Client)
 
     const existingClientName = await clientRepository.findOneBy({

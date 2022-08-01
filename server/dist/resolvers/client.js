@@ -88,7 +88,6 @@ let ClientResolver = class ClientResolver {
     }
     register(username, email, password, { req, res }) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req);
             const clientRepository = data_source_1.AppDataSource.getRepository(Client_1.Client);
             const existingClientName = yield clientRepository.findOneBy({
                 name: username,
