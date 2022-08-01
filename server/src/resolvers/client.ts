@@ -30,9 +30,6 @@ class UserResponse {
 
   @Field(() => String, { nullable: true })
   cookie?: string
-
-  // @Field(() => String, { nullable: true })
-  // refreshToken?: string
 }
 
 @Resolver()
@@ -125,7 +122,6 @@ export class ClientResolver {
     }
 
     req.session.userId = existingUser.id
-    console.log(req)
 
     return {
       client: existingUser,

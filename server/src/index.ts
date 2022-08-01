@@ -21,20 +21,17 @@ const main = async () => {
   const app = express()
 
   const RedisStore = connectRedis(session)
-  const redis = new Redis()
+  const redis = new Redis(6379)
   app.set("trust proxy", 1)
-  // const redisClient = redis.createClient()
 
   app.use(
     session({
-      name: "this is my cookie",
+      name: "cid",
       store: new RedisStore({ client: redis, disableTouch: true }),
       cookie: {
         maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true,
         sameSite: "lax",
-        secure: true, // cookie only works in https
-        // domain: __prod__ ? ".codeponder.com" : undefined,
       },
       saveUninitialized: false,
       secret: "safhsfkaskjbsdkjadsd",
@@ -55,13 +52,6 @@ const main = async () => {
   })
   await apolloServer.start()
 
-  // const userRepository = AppDataSource.getRepository(Client)
-  // const client = new Client()
-  // client.name = "Ballack"
-  // client.password = "b613"
-  // client.email = "gildasnfor@gmail.com"
-  // client.isAdmin = true
-  // await userRepository.save(client)
   apolloServer.applyMiddleware({ app, cors: false })
 
   app.listen(4000, () => {

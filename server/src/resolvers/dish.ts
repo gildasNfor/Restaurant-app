@@ -29,9 +29,6 @@ class Response {
 
   @Field(() => String, { nullable: true })
   cookie?: string
-
-  // @Field(() => String, { nullable: true })
-  // refreshToken?: string
 }
 
 @Resolver()

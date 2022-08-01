@@ -26,16 +26,15 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     yield data_source_1.AppDataSource.initialize();
     const app = (0, express_1.default)();
     const RedisStore = (0, connect_redis_1.default)(express_session_1.default);
-    const redis = new ioredis_1.default();
+    const redis = new ioredis_1.default(6379);
     app.set("trust proxy", 1);
     app.use((0, express_session_1.default)({
-        name: "this is my cookie",
+        name: "cid",
         store: new RedisStore({ client: redis, disableTouch: true }),
         cookie: {
             maxAge: 1000 * 60 * 60 * 24,
             httpOnly: true,
             sameSite: "lax",
-            secure: true,
         },
         saveUninitialized: false,
         secret: "safhsfkaskjbsdkjadsd",

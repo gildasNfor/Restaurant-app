@@ -153,7 +153,6 @@ let ClientResolver = class ClientResolver {
                 };
             }
             req.session.userId = existingUser.id;
-            console.log(req);
             return {
                 client: existingUser,
             };
